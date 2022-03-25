@@ -12,33 +12,44 @@ public class CollisionControl : MonoBehaviour
     public TMP_Text pointText;
     int grade = 0;
     int health = 3;
+    GameObject wall;
     // Start is called before the first frame update
     void Start()
     {
-        
+        wall = GameObject.Find("Parent_Duvar1");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (health == 0)
+        {
+            healthText.text.Equals("NO HEALTH");
+            SceneManager.LoadScene("GameOverScreen");
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision){
-        
-        if(collision.gameObject.name.Equals("Obstacle")){
+
+
+
+        if (collision.gameObject.name.Equals("Obstacle"))
+        {
             Destroy(collision.gameObject);
             health = health - 1;
             healthText.text = health.ToString();
         }
 
-        else if(collision.gameObject.name.Equals("Obstacle (1)")){
+        else if (collision.gameObject.name.Equals("Obstacle (1)"))
+        {
             Destroy(collision.gameObject);
             health = health - 1;
             healthText.text = health.ToString();
         }
 
-        else if(collision.gameObject.name.Equals("Obstacle (2)")){
+        else if (collision.gameObject.name.Equals("Obstacle (2)"))
+        {
             Destroy(collision.gameObject);
             health = health - 1;
             healthText.text = health.ToString();
@@ -100,19 +111,29 @@ public class CollisionControl : MonoBehaviour
             healthText.text = health.ToString();
         }
 
-        else if(collision.gameObject.name.Equals("Grade1")){
+        else if (collision.gameObject.name.Equals("Grade1"))
+        {
             Destroy(collision.gameObject);
             grade = grade + 1;
             gradeText.text = grade.ToString();
         }
 
-        else if(collision.gameObject.name.Equals("Grade2")){
+        else if (collision.gameObject.name.Equals("Grade2"))
+        {
             Destroy(collision.gameObject);
             grade = grade + 1;
             gradeText.text = grade.ToString();
         }
 
-        else if(collision.gameObject.name.Equals("Grade2 (1)")){
+        else if (collision.gameObject.name.Equals("Grade1 (1)"))
+        {
+            Destroy(collision.gameObject);
+            grade = grade + 1;
+            gradeText.text = grade.ToString();
+        }
+
+        else if (collision.gameObject.name.Equals("Grade2 (1)"))
+        {
             Destroy(collision.gameObject);
             grade = grade + 1;
             gradeText.text = grade.ToString();
@@ -125,13 +146,13 @@ public class CollisionControl : MonoBehaviour
             gradeText.text = grade.ToString();
         }
 
-        else if (health == 0)
+        else if (collision.gameObject.name.Equals("Parent_Duvar1"))
         {
-            SceneManager.LoadScene("GameOverScreen");
+            wall.GetComponent<Animator>().SetTrigger("Activate_Bridge");
         }
 
-        pointText.text = grade.ToString() + "Points";
-
+        pointText.text = grade.ToString();
+        
     }
 
 }

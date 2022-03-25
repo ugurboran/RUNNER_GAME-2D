@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public int speed = 50;
-    public int jump = 200;
+    public int speed = 100;
+    public int jump = 2000;
     Rigidbody2D rb;
+     
     // Start is called before the first frame update
     void Start()
     {
+        
         rb = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
@@ -17,15 +19,16 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKeyDown(KeyCode.D)){
+        if(Input.GetKeyDown(KeyCode.RightArrow)){
             rb.AddForce(Vector3.right * speed);
         }
 
-        else if(Input.GetKeyDown(KeyCode.A)){
+        else if(Input.GetKeyDown(KeyCode.LeftArrow)){
+            
             rb.AddForce(Vector3.left * speed);
         }
 
-        else if(Input.GetKeyDown(KeyCode.Space)){
+        else if(Input.GetKeyDown(KeyCode.UpArrow)){
             rb.AddForce(Vector3.up * jump);
         }
 
